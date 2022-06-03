@@ -19,25 +19,6 @@ pragma solidity ^0.8.7;
 // address myAddress = 0x98370C5D6D3C741EAD804B70a2E734B55DB41Ffa;
 // bytes32 favoriteBytes = "Cat";
 
-contract SimpleStorage {
-    // This gets initialized to 0
-    uint256 public favoriteNumber;
-
-    function store(uint256 _favoriteNumber) public {
-        favoriteNumber = _favoriteNumber;
-    }
-
-    function retrieve() public view returns (uint256) {
-        return favoriteNumber;
-    }
-
-    // Pure function
-
-    function add() public pure returns (uint256) {
-        return (1 + 1);
-    }
-}
-
 // View Function - Means we are just going to read state from this contract, we
 // are just going to read something off of this contract
 
@@ -53,3 +34,32 @@ contract SimpleStorage {
 
 // If a gas calling function calls a view or pure function - only then will it
 // cost gas.
+
+// Calling view functions is free unless your calling it inside of a function
+// that cost gas
+
+// The returns keyword means what is this function going to give us after we call it
+
+contract SimpleStorage {
+    // This gets initialized to 0
+    uint256 public favoriteNumber;
+
+    struct People {
+        uint256 favoritNumber;
+        string name;
+    }
+
+    function store(uint256 _favoriteNumber) public {
+        favoriteNumber = _favoriteNumber;
+    }
+
+    function retrieve() public view returns (uint256) {
+        return favoriteNumber;
+    }
+
+    // Pure function
+
+    function add() public pure returns (uint256) {
+        return (1 + 1);
+    }
+}
