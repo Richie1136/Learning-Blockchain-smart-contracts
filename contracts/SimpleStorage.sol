@@ -21,7 +21,35 @@ pragma solidity ^0.8.7;
 
 contract SimpleStorage {
     // This gets initialized to 0
-    uint256 favoriteNumber;
+    uint256 public favoriteNumber;
 
-    function store(uint256 _favoriteNumber) public {}
+    function store(uint256 _favoriteNumber) public {
+        favoriteNumber = _favoriteNumber;
+    }
+
+    function retrieve() public view returns (uint256) {
+        return favoriteNumber;
+    }
+
+    // Pure function
+
+    function add() public pure returns (uint256) {
+        return (1 + 1);
+    }
 }
+
+// View Function - Means we are just going to read state from this contract, we
+// are just going to read something off of this contract
+
+// View and pure functions disallow modification of state
+
+// Pure functions additionally disallow you to read from blockchain state
+
+// If you call a view function or a pure function by itself you don't need to
+// spend any gas since we are just reading from the blockchain
+
+// We only spend gas/ we only make a transaction when we modify the blockchain
+// state
+
+// If a gas calling function calls a view or pure function - only then will it
+// cost gas.
