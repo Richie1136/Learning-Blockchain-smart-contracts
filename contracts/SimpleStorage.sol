@@ -11,12 +11,17 @@ pragma solidity ^0.8.7;
 // int - Positive or Negative whole number
 // address - An address
 
+// boolean, uint, int, address, bytes
+// bool hasFavoriteNumber = true;
+// uint256 favoriteNumber = 123;
+// int256 favoriteNumber2 = -456;
+// string favoriteNumberInText = "Apples are the best";
+// address myAddress = 0x98370C5D6D3C741EAD804B70a2E734B55DB41Ffa;
+// bytes32 favoriteBytes = "Cat";
+
 contract SimpleStorage {
-    // boolean, uint, int, address, bytes
-    bool hasFavoriteNumber = true;
-    uint256 favoriteNumber = 123;
-    int256 favoriteNumber2 = -456;
-    string favoriteNumberInText = "Apples are the best";
-    address myAddress = 0x98370C5D6D3C741EAD804B70a2E734B55DB41Ffa;
-    bytes32 favoriteBytes = "Cat";
+    // This gets initialized to 0
+    uint256 favoriteNumber;
+
+    function store(uint256 _favoriteNumber) public {}
 }
