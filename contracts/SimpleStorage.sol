@@ -67,4 +67,9 @@ contract SimpleStorage {
     function add() public pure returns (uint256) {
         return (1 + 1);
     }
+
+    function addPerson(string memory _name, uint256 favNum) public {
+        People memory newPerson = People({favoriteNumber: favNum, name: _name});
+        people.push();
+    }
 }
