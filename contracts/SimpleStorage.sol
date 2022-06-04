@@ -40,8 +40,23 @@ pragma solidity ^0.8.7;
 
 // The returns keyword means what is this function going to give us after we call it
 
+// You can store data in 6 places in solidity
+
+// The Stack, Memory, Storage, Calldata, Code, and Logs
+
+// Calldata and memory means that the variable is only going to exist temporarily.
+
+// Storage variables exist, even outside of just the function executing.
+
+// Calldata are temporary variables that can't be modified
+
+// Memory is temporary variables that can be modified
+
+// Storage is permanent varibles that can be modified
+
 contract SimpleStorage {
     // This gets initialized to 0
+    // Storage variable
     uint256 public favoriteNumber;
     // Created my first person {0: uint256: favoriteNumber 2 1:string: name Robert}
     People public person = People({favoriteNumber: 2, name: "Robert"});
@@ -68,8 +83,12 @@ contract SimpleStorage {
         return (1 + 1);
     }
 
+    // calldata, memory, storage
+
+    // Name variable only exists temporarily during the transaction that this addPerson function
+    // is called
     function addPerson(string memory _name, uint256 favNum) public {
         People memory newPerson = People({favoriteNumber: favNum, name: _name});
-        people.push();
+        people.push(newPerson);
     }
 }
