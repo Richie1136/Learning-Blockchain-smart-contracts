@@ -43,7 +43,11 @@ pragma solidity ^0.8.7;
 contract SimpleStorage {
     // This gets initialized to 0
     uint256 public favoriteNumber;
+    // Created my first person {0: uint256: favoriteNumber 2 1:string: name Robert}
     People public person = People({favoriteNumber: 2, name: "Robert"});
+
+    // Creating a People Array
+    People[] public people;
 
     struct People {
         uint256 favoriteNumber;
