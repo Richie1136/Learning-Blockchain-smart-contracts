@@ -67,7 +67,7 @@ contract SimpleStorage {
     // Created my first person {0: uint256: favoriteNumber 2 1:string: name Robert}
     People public person = People({favoriteNumber: 2, name: "Robert"});
 
-    // Creating a People Array
+    // Creating a people Array
     People[] public people;
 
     struct People {
@@ -99,7 +99,9 @@ contract SimpleStorage {
         // Need to add memory to strings because a string is an array which means we need to
         // add it to memory
         People memory newPerson = People({favoriteNumber: favNum, name: _name});
+        // we are saying the stirng name is being mapped to the uint256 favNum
         nameToFavoriteNumber[_name] = favNum;
+        // Also getting added to the people array
         people.push(newPerson);
     }
 }
