@@ -54,10 +54,16 @@ pragma solidity ^0.8.7;
 
 // Storage is permanent varibles that can be modified
 
+// Mapping - is a data structure where a key is "mapped" to a single value, easy way
+// to think of it is as a dictionary
+
 contract SimpleStorage {
     // This gets initialized to 0
     // Storage variable
     uint256 public favoriteNumber;
+
+    mapping(string => uint256) public nameToFavoriteNumber;
+
     // Created my first person {0: uint256: favoriteNumber 2 1:string: name Robert}
     People public person = People({favoriteNumber: 2, name: "Robert"});
 
@@ -87,8 +93,13 @@ contract SimpleStorage {
 
     // Name variable only exists temporarily during the transaction that this addPerson function
     // is called
+
+    // Need to tell functions the data location for array, struct or mapping types
     function addPerson(string memory _name, uint256 favNum) public {
+        // Need to add memory to strings because a string is an array which means we need to
+        // add it to memory
         People memory newPerson = People({favoriteNumber: favNum, name: _name});
+        nameToFavoriteNumber[_name] = favNum;
         people.push(newPerson);
     }
 }
