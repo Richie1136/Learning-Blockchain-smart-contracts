@@ -63,6 +63,11 @@ pragma solidity ^0.8.7;
 // EVM, Ethereum Virtual Machine - A standard of how to deploy smart contracts to
 // ethereum like blockchains
 
+// Any blockchain that implements a type of EVM. You can deploy solidity code to.
+// Some examples of EVM compatible blockchains are going to be Avalanche, Phantom, and
+// Polygon. Since these are EVM compatible, this means we can write solidity code,
+// and deploy to these blochains.
+
 contract SimpleStorage {
     // This gets initialized to 0
     // Storage variable
