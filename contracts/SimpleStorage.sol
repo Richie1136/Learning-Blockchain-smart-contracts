@@ -57,6 +57,12 @@ pragma solidity ^0.8.7;
 // Mapping - is a data structure where a key is "mapped" to a single value, easy way
 // to think of it is as a dictionary
 
+// The store and addPerson functions modify the blockchain meaning that metamask
+// will pop up to confirm the transaction
+
+// EVM, Ethereum Virtual Machine - A standard of how to deploy smart contracts to
+// ethereum like blockchains
+
 contract SimpleStorage {
     // This gets initialized to 0
     // Storage variable
