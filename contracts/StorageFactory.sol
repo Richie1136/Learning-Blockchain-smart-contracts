@@ -21,5 +21,9 @@ contract StorageFactory {
         // Address
         // ABI - Application Binary Interface. Tells you all of the inputs and
         // outputs and everything you could do with the contract
+        SimpleStorage simpleStorage = SimpleStorage(
+            simpleStorageArray[_simpleStorageIndex]
+        );
+        simpleStorage.store(_simpleStorageNumber);
     }
 }
