@@ -26,4 +26,6 @@ contract StorageFactory {
         );
         simpleStorage.store(_simpleStorageNumber);
     }
+
+    function StorageFactoryGet(uint256 _simpleStorageIndex) public {}
 }
