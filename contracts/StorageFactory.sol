@@ -7,6 +7,13 @@ import "./SimpleStorage.sol";
 contract StorageFactory {
     SimpleStorage[] public simpleStorageArray;
 
+    // Storage factory contract allows us to create simple storage contracts,
+    // it then saves it to our simple storage array, which we can then call different
+    // functions on, which we can then call different functions on, we can store
+    // values from our storage factory contract. And then we can read values from
+    // our storage factory contract for any of the simple storage contracts that
+    // we've created.
+
     function createSimpleStorageContract() public {
         // Saving simpleStorage as a memory variable
         SimpleStorage simpleStorage = new SimpleStorage();
@@ -18,14 +25,21 @@ contract StorageFactory {
         uint256 _simpleStorageIndex,
         uint256 _simpleStorageNumber
     ) public {
+        // call the store function from the SimpleStorage file from inside of the StorageFactory
         // Address
         // ABI - Application Binary Interface. Tells you all of the inputs and
         // outputs and everything you could do with the contract
-        SimpleStorage simpleStorage = SimpleStorage(
-            simpleStorageArray[_simpleStorageIndex]
-        );
-        simpleStorage.store(_simpleStorageNumber);
+        simpleStorageArray[_simpleStorageIndex].store(_simpleStorageNumber);
     }
 
-    function StorageFactoryGet(uint256 _simpleStorageIndex) public {}
+    function StorageFactoryGet(uint256 _simpleStorageIndex)
+        public
+        view
+        returns (uint256)
+    {
+        // function that can read from the simple storage contract from the storage factory
+
+        return simpleStorageArray[_simpleStorageIndex].retrieve();
+        // This will get the number that is stored inside of the storagefactoryStore function
+    }
 }
