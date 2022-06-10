@@ -76,7 +76,7 @@ contract SimpleStorage {
     mapping(string => uint256) public nameToFavoriteNumber;
 
     // Created my first person {0: uint256: favoriteNumber 2 1:string: name Robert}
-    People public person = People({favoriteNumber: 2, name: "Robert"});
+    // People public person = People({favoriteNumber: 2, name: "Robert"});
 
     // Creating a people Array
     People[] public people;
@@ -86,7 +86,7 @@ contract SimpleStorage {
         string name;
     }
 
-    function store(uint256 _favoriteNumber) public {
+    function store(uint256 _favoriteNumber) public virtual {
         favoriteNumber = _favoriteNumber;
     }
 
@@ -96,9 +96,9 @@ contract SimpleStorage {
 
     // Pure function
 
-    function add() public pure returns (uint256) {
-        return (1 + 1);
-    }
+    // function add() public pure returns (uint256) {
+    //     return (1 + 1);
+    // }
 
     // calldata, memory, storage
 
