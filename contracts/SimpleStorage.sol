@@ -87,6 +87,7 @@ contract SimpleStorage {
     }
 
     function store(uint256 _favoriteNumber) public virtual {
+        // Add the word virtual to make this function overrideable
         favoriteNumber = _favoriteNumber;
     }
 

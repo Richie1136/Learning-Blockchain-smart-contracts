@@ -12,6 +12,7 @@ contract ExtraStorage is SimpleStorage {
     // override
     // virtual override
     function store(uint256 _favoriteNumber) public override {
+        // Add the word override to override the function
         favoriteNumber = _favoriteNumber + 5;
     }
 }
