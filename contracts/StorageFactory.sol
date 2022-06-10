@@ -2,6 +2,8 @@
 
 pragma solidity ^0.8.7;
 
+// how to import other contracts into our contracts and into our code using the
+// import keyword.
 import "./SimpleStorage.sol";
 
 contract StorageFactory {
@@ -15,6 +17,8 @@ contract StorageFactory {
     // we've created.
 
     function createSimpleStorageContract() public {
+        // Deploy contracts from other contracts using the new keyword
+
         // Saving simpleStorage as a memory variable
         SimpleStorage simpleStorage = new SimpleStorage();
         // pushing the simpleStorage into the array
@@ -25,6 +29,8 @@ contract StorageFactory {
         uint256 _simpleStorageIndex,
         uint256 _simpleStorageNumber
     ) public {
+        // Can interact with other contracts as long as we have the ABI and address
+
         // call the store function from the SimpleStorage file from inside of the StorageFactory
         // Address
         // ABI - Application Binary Interface. Tells you all of the inputs and

@@ -8,6 +8,15 @@ import "./SimpleStorage.sol";
 // can just import it and say your contract is that other contract.
 
 contract ExtraStorage is SimpleStorage {
+    // How to create a child contract and inherit the functionality of some other contract,
+    // we can do something called inheritance.
+    // The way to inherit functionality is using the is keyword and saying our contract
+    // is some other contract.
+    // However, if we want to chnage from the functionality of the parent contract,
+    //we have to override that function and additionally, we have to set the function
+    // we want to override to virtual now we can have our own store function,
+    // do whateevr we want it to do.
+
     // + 5
     // override
     // virtual override
