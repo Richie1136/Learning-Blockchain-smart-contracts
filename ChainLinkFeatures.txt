@@ -1,0 +1,43 @@
+CHAIN LINK OUT OF THE BOX FEATURES
+
+Chainlink Data Feeds - Powering over $50 billion in the DeFi world. 
+The way they work is a network of chain link nodes gets data from different exchanges and
+data providers and brings that data through a network of decentralized chain link
+nodes, the chain link nodes use a median to figure out what the actual price of the
+asset is, and then deliver that in a single transaction to what's called a
+reference contract, a price feed contract or a data contract on chain that other
+smart contracts can use. And then those smart contracts use that pricing information
+to power their defy applivation.
+
+Chainlink VRF - Securing Randomness for your applications, blockchains are deterministic
+systems, which by definition means that they can't have randomness. 
+Chainlink verifiable randomness function is a way to get provably random number 
+into our smart contract to guarantee fairness and guarantee randomness of applications. 
+Many protocols like pool together xinfinity, ether cards, avocado cheese and 
+more use chainlink VRF for lotteries, randomizing NFT's for gaming and for more.
+
+Chainlink Keepers - Decentralized Event-Driven Execution - in order to kick off
+some type of transaction, somebody needs to spend the gas and somebody needs to
+sit down and hit the go button or hit the transact button ort hit the send button.
+But this is obviously a centralized vector. If you have a decentralized application
+that needs to run at specific times, or after specific events are triggered.
+
+Chainlink keepers are the solution to this, Chainlink keepers are chain link
+nodes that listen to a registration contract for different events that you
+specify to fire. Maybe you say every 10 minutes, you want to do something or once a week
+do something or if the price of asset hits some number, 
+or maybe liquidity pool is at a certain level, whatever event that you want to code, 
+you absolutely can the chain link nodes constantly listen for these triggers to happen 
+and check the different contracts for these triggers. 
+Once a trigger returns true, the chain link nodes will then perform whatever action 
+that you tell the chain link nodes to do.
+
+End-to-end Reliability Is The Promise of Smart Contracts(most customizable, but also the 
+hardest to get correct) - making HTTP GET HTTP POST request is an easy way to customize our 
+chain link nodes to be able to do anything. 
+Chain link nodes can make direct request to any API that you specify. 
+In order to do this, you both have to choose the chain link node  and the URL/ data to send the request to, 
+this is a little bit trickier then chain link VRF keepers or price feeds because 
+you then have to be responsible for creating the chain link network 
+that gets data from many different chain link nodes and many 
+different data providers.
