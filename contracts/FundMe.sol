@@ -74,6 +74,21 @@
 // we have to do the most work because it doesn't come already with a decentralized oracle
 // network, like chaining the keepers and price feeds.
 
+// When working with a contraxt, you always need the ABI and the address when compiled an
+// interface gives us that minimalistic ABI to interact with contracts outside of your project.
+
+// When you combine these compiled interfaces with an address, we can call the functions
+// on that interface on that contract. Chain link data feeds are a decentralized way to
+// get information about the real world. In this case, we're getting the price of ethereum
+// in terms of USD from a decentralized collective of chain link nodes. When working with math
+// and solidity. Decimals don't work. So we need to keep that in mind when doing any type
+// of math in solidity. And we need to make sure we always have the correct units, so that
+// our math makes sense.
+
+// msg.value and msg.sender are globally available variables were msg.sender represents
+// the sender of the message or transaction and msg.value represents the number of WEI sent
+// with the message.
+
 pragma solidity ^0.8.7;
 
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
@@ -93,6 +108,7 @@ contract FundMe {
         require(getConversion(msg.value) >= minUSD, "Didn't send enough"); // 1e18 is equal to 1 * 10 ** 18
         // 18 Decimal places becuase 1 ether === 1000000000000000000(18 0s)
         funders.push(msg.sender); // The address of the sender
+        addressToAmountFunded[msg.sender] = msg.value;
     }
 
     function getPrice() public view returns (uint256) {
