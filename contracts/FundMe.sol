@@ -82,6 +82,7 @@ contract FundMe {
     uint256 public minUSD = 50 * 1e18;
 
     address[] public funders;
+    mapping(address => uint256) public addressToAmountFunded;
 
     function fund() public payable {
         // Smart contracts can hold funds just like how wallets can
@@ -91,7 +92,7 @@ contract FundMe {
         // Using msg.value to get how much value somebody is sending
         require(getConversion(msg.value) >= minUSD, "Didn't send enough"); // 1e18 is equal to 1 * 10 ** 18
         // 18 Decimal places becuase 1 ether === 1000000000000000000(18 0s)
-        funders.push(msg.sender);
+        funders.push(msg.sender); // The address of the sender
     }
 
     function getPrice() public view returns (uint256) {
