@@ -126,5 +126,8 @@ contract FundMe {
             address funder = funders[funderIndex];
             addressToAmountFunded[funder] = 0;
         }
+        // reset array to make the funders a blank array
+        funders = new address[](0);
+        // actually withdraw the funds
     }
 }
