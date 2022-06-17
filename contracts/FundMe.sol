@@ -122,6 +122,9 @@ contract FundMe {
             uint256 funderIndex = 0;
             funderIndex < funders.length;
             funderIndex++
-        ) {}
+        ) {
+            address funder = funders[funderIndex];
+            addressToAmountFunded[funder] = 0;
+        }
     }
 }
