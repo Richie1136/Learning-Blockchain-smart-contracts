@@ -104,6 +104,8 @@ contract FundMe {
         // Want to be able to set a minium fund amount in USD
         // 1. How do we send ETH to this contract?
 
+        // msg.value.getConversion();
+
         // Using msg.value to get how much value somebody is sending
         require(getConversion(msg.value) >= minUSD, "Didn't send enough"); // 1e18 is equal to 1 * 10 ** 18
         // 18 Decimal places becuase 1 ether === 1000000000000000000(18 0s)
