@@ -116,5 +116,12 @@ contract FundMe {
         addressToAmountFunded[msg.sender] = msg.value;
     }
 
-    // function withdraw() {}
+    function withdraw() public {
+        // looping over the funders array in solidity
+        for (
+            uint256 funderIndex = 0;
+            funderIndex < funders.length;
+            funderIndex++
+        ) {}
+    }
 }
