@@ -124,10 +124,63 @@ contract FundMe {
             funderIndex++
         ) {
             address funder = funders[funderIndex];
+            // Grabbing the indexes of the funders object and it returns a funders
+            // address
             addressToAmountFunded[funder] = 0;
+            // resetting the addressToAmountFunded at the funder key back to zero
         }
         // reset array to make the funders a blank array
         funders = new address[](0);
         // actually withdraw the funds
+
+        // Three different ways to send ether or native blockchain currency
+
+        // transfer
+        // send
+        // call
+
+        // msg.sender = address
+        // payable(msg.sender) = payable address
+
+        // First way to send ethereum or send tokens from different contracts to each other,
+        // we wrap the address that we want to send it in, in the payable keyword, we do
+        // .transfer, and then we say exactly how much we want to transfer
+
+        // Issue with transfer is that it is capped at 2300 gas and if more gas is used, it
+        // throws an error
+
+        // TRANSFER
+
+        payable(msg.sender).transfer(address(this).balance);
+        // The this keyword refers to the whole contract.balance, and can get the
+        // native blockchain currency or the ethereum currency balance of the address like this.
+
+        // Transfer automatically reverts if the transfer fails
+
+        // SEND
+
+        bool sendSuccess = payable(msg.sender).send(address(this).balance);
+        // if this fails, we will still revert by adding our require statement here.
+
+        // Send will only revert the transaction if we add this require statement here.
+        require(sendSuccess, "Send failed");
+
+        // CALL
+
+        // Call function is incredibly powerful, we can use it to call virtually any function
+        // in all of ethereum without even having to have the ABI.
+
+        (bool Success, bytes memory dataReturned) = payable(msg.sender).call{
+            value: address(this).balance
+        }("");
+        require(Success, "Call failed");
+        // function returns two variables.
+
+        // Since call allows us to call different functions, if that function returns
+        // some data or returns value, we're going to save that in the data returned variable.
+
+        // It also returns Success, where if the function was successfully called this will be
+        // true. If not, this will be false. And since bytes objects are arrays, data returns
+        // needs to be in memory
     }
 }
