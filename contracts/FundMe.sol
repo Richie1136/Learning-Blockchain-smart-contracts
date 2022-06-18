@@ -100,6 +100,17 @@ contract FundMe {
     address[] public funders;
     mapping(address => uint256) public addressToAmountFunded;
 
+    address public owner;
+
+    constructor() {
+        // constructor is a function that gets immediately called in the same
+        // transaction, that we create the contract, this constructor function is
+        // going to be incredibly helpful for us, because it allows us to set up the
+        // contract the way we want it to be
+
+        owner = msg.sender;
+    }
+
     function fund() public payable {
         // Smart contracts can hold funds just like how wallets can
         // Want to be able to set a minium fund amount in USD
@@ -133,11 +144,15 @@ contract FundMe {
         funders = new address[](0);
         // actually withdraw the funds
 
-        // Three different ways to send ether or native blockchain currency
+        // Three different ways to send ether or native blockchain currency to
+        // other contracts
 
-        // transfer
-        // send
-        // call
+        // transfer max 2300 gas, throws error
+        // send max 2300 gas, returns bool
+        // call forward all gas or set gas, returns bool
+
+        // Call is the recommended way to send and receive ethereum or your blockchain
+        // native token.
 
         // msg.sender = address
         // payable(msg.sender) = payable address
