@@ -89,6 +89,9 @@
 // the sender of the message or transaction and msg.value represents the number of WEI sent
 // with the message.
 
+// = is a set parameter
+// == how you check to see if two variables are equivalent
+
 pragma solidity ^0.8.7;
 
 import "./PriceConverter.sol";
@@ -127,8 +130,14 @@ contract FundMe {
         addressToAmountFunded[msg.sender] = msg.value;
     }
 
-    function withdraw() public {
-        require(msg.sender == owner);
+    function withdraw() public onlyOwner {
+        // We are saying before you read all of this code inside of it, look down at the
+        // only owner modifier and do whatever is in there first, and then do whatever is
+        // in the underscore.
+
+        // ONE WAY OF MAKING SURE THE OWNER IS THE SENDER
+        // require(msg.sender == owner, "Sender is not the Owner");
+
         // looping over the funders array in solidity
         for (
             uint256 funderIndex = 0;
@@ -198,5 +207,12 @@ contract FundMe {
         // It also returns Success, where if the function was successfully called this will be
         // true. If not, this will be false. And since bytes objects are arrays, data returns
         // needs to be in memory
+    }
+
+    modifier onlyOwner() {
+        // A modifier is used to modify the behavior of a function.
+        require(msg.sender == owner, "Sender is not Owner");
+        // The underscore represents doing the rest of the code
+        _;
     }
 }
