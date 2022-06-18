@@ -128,6 +128,7 @@ contract FundMe {
     }
 
     function withdraw() public {
+        require(msg.sender == owner);
         // looping over the funders array in solidity
         for (
             uint256 funderIndex = 0;
