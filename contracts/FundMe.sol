@@ -96,14 +96,31 @@ pragma solidity ^0.8.7;
 
 import "./PriceConverter.sol";
 
+// Constant, Immutable
+
+// When you add the constant keyword the minUSD no longer takes up a storage spot,
+// and is much easier to read too.
+
+// Immutable variables can be assigned an arbitary value in the constructor of a
+// contract or at the point of their declaration
+
+// They cannot be read during construction time and can only be assigned once.
+
+// Contract cost 773,928 of gas
+// Contract cost after adding constant keyword to minUSD 754,398
 contract FundMe {
     using PriceConverter for uint256;
-    uint256 public minUSD = 50 * 1e18;
+    uint256 public constant minUSD = 50 * 1e18;
+    // Cost with constant 21,481
+    // Cost without constant 23,581
+
+    // 21,481 * 22000000000 = 472,582,000,000,000 = $0.52976914782
+    // 23,581 * 22000000000 = 518,782,000,000,000 = $0.58167394186
 
     address[] public funders;
     mapping(address => uint256) public addressToAmountFunded;
 
-    address public owner;
+    address public immutable i_owner;
 
     constructor() {
         // constructor is a function that gets immediately called in the same
@@ -111,7 +128,7 @@ contract FundMe {
         // going to be incredibly helpful for us, because it allows us to set up the
         // contract the way we want it to be
 
-        owner = msg.sender;
+        i_owner = msg.sender;
     }
 
     function fund() public payable {
@@ -211,7 +228,7 @@ contract FundMe {
 
     modifier onlyOwner() {
         // A modifier is used to modify the behavior of a function.
-        require(msg.sender == owner, "Sender is not Owner");
+        require(msg.sender == i_owner, "Sender is not Owner");
         // The underscore represents doing the rest of the code
         _;
     }
