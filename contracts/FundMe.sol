@@ -96,6 +96,8 @@ pragma solidity ^0.8.7;
 
 import "./PriceConverter.sol";
 
+error NotOwner();
+
 // Constant, Immutable
 
 // When you add the constant keyword the minUSD no longer takes up a storage spot,
@@ -228,7 +230,7 @@ contract FundMe {
 
     modifier onlyOwner() {
         // A modifier is used to modify the behavior of a function.
-        require(msg.sender == i_owner, "Sender is not Owner");
+        if (msg.sender != i_owner) revert(NotOwner());
         // The underscore represents doing the rest of the code
         _;
     }
