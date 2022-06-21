@@ -26,4 +26,8 @@ contract FallbackExample {
 
         result = 1;
     }
+
+    fallback() external payable {
+        result = 2;
+    }
 }
