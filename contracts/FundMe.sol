@@ -92,6 +92,13 @@
 // = is a set parameter
 // == how you check to see if two variables are equivalent
 
+// constructor, receive and fallback don't need the function keyword because they
+// are special functions
+
+// Constant and Immutable are keywords that could be used to save gas in the long run.
+
+// Constant and immutable are for variables that can only be declared and updated once.
+
 pragma solidity ^0.8.7;
 
 import "./PriceConverter.sol";
@@ -230,7 +237,7 @@ contract FundMe {
 
     modifier onlyOwner() {
         // A modifier is used to modify the behavior of a function.
-        if (msg.sender != i_owner) revert(NotOwner());
+        if (msg.sender != i_owner) revert NotOwner();
         // The underscore represents doing the rest of the code
         _;
     }
@@ -244,3 +251,11 @@ contract FundMe {
         fund();
     }
 }
+
+// 1. Enums
+// 2. Events
+// 3. Try / Catch
+// 4. Function Selectors
+// 5. abi.encode / decode
+// 6. Hashing
+// 7. Yul / Assumbly
