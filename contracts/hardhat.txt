@@ -1,0 +1,17 @@
+Hardhat - A smart contract developer framework and the reason we are going to do 
+Hardhat is because it is JavaScript based. It's a JavaScript based development 
+environments.
+
+
+Hardhat Development Environment
+
+- Flexible JavaScript based Development Environment to compile, deploy, test and 
+debug EVM(Ethereum Virtual Machine) based smart contracts.
+
+- Enables easy integration of code and external tools.
+
+- Local Hardhat Network to simulate Ethereum.
+
+- Extensible plugin features.
+
+- High level of debugging features.
