@@ -99,6 +99,76 @@
 
 // Constant and immutable are for variables that can only be declared and updated once.
 
+// Immutable can be declared one time in the constructor, once an immutable variable
+// is declared, it can't be changed later on
+
+// Effective Debugging Strategies and Getting Help
+
+// Limit tinkering / triaging to 20 minutes.
+// Take at least 15 minutes yourself => or be 100% sure you exhausted all options
+
+// 1. Tinker and try to pinpoint exactly what's going on
+// 2. Google the exact error
+// 2.5 Go to Github repo discussions and/or updates
+// 3. Ask a question on a forum like Stack Exchange ETH and Stack Overflow
+
+// When asking a question start with ``` and end with ```
+// next to the start of the ``` add solidity
+
+// example of how to ask a question
+
+// ```solidity
+//     function fund() public payable {
+//         // Smart contracts can hold funds just like how wallets can
+//         // Want to be able to set a minium fund amount in USD
+//         // 1. How do we send ETH to this contract?
+
+//         msg.value.getConversion();
+
+//         // Using msg.value to get how much value somebody is sending
+//         // Dont need to pass anything to the getConversion because msg.value is
+//         // considered the first parameter for any of these library functions
+//         require(msg.value.getConversion() >= minUSD, "Didn't send enough"); // 1e18 is equal to 1 * 10 ** 18
+//         // 18 Decimal places becuase 1 ether === 1000000000000000000(18 0s)
+//         funders.push(msg.sender); // The address of the sender
+//         addressToAmountFunded[msg.sender] = msg.value;
+//     }
+//     ```
+
+//     On this function, im running into an error.
+// ```
+//     TypeError: "msg.value" and "callvalue()" can only be used in payable public functions.
+//     ```
+
+//     Can someone tell what's going on?
+
+// 5 Steps To Solve ANY Coding Problem
+
+// 1. Tinker and Experiment - Pinpoint exactly what's going wrong
+// 2. Check the Docs
+// 3. Do a web search
+// 4. Ask Questions on Forums and Q&A Sites
+// - Indexed Code-Based Forum - Stack Overflow
+// - Indexed Repository - GitHub
+// - Indexed Technology-Specific Forum - Reddit
+// - Unindexed Discussion Platform - Discord
+
+// 5. Join and Strengthen the Community and Tool
+
+// Make your questions searchable and indexed by web crawlers
+
+// How to format your question
+
+// 1. Search
+// 2. Summarizing Title
+// 3. Introduce the problem first
+// 4. Add minimalistic Code
+// 5. Larn Markdown (Use backpacks)
+// 6. Use Tags
+// 7. Read Forum Rules
+
+// Introduction to Development Environments
+
 pragma solidity ^0.8.7;
 
 import "./PriceConverter.sol";
