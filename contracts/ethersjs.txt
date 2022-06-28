@@ -1,0 +1,2 @@
+Ethers.js - is a JavaScript based library for working with smart contracts and 
+it is what powers Hardhat.
