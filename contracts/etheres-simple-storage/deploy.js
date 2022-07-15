@@ -1,3 +1,5 @@
+import { ethers } from "ethers"
+
 // synchronous [solidity]
 // asynchronous [javascript] - can have code running at the same time
 
@@ -40,6 +42,9 @@ const cookPopcorn = () => {
 const main = async () => {
   // compile them in our code
   // compile them separately
+  // http://127.0.0.1:7545
+  const provider = new ethers.providers.JsonRpcProvider("http://127.0.0.1:7545")
+
 }
 
 main().then(() => process.exit(0))
