@@ -38,7 +38,8 @@ const cookPopcorn = () => {
 }
 
 const main = async () => {
-
+  // compile them in our code
+  // compile them separately
 }
 
 main().then(() => process.exit(0))
