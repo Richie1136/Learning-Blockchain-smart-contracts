@@ -29,8 +29,20 @@ const setupMovieNight = async () => {
   await cookPopcorn()
   await pourDrinks()
   startMovie()
+  // deploy a contract? WAit for it to be deployed.
+  // contract.deploy => wouldn't wait for it to finish, if it wasn't a async function
 }
 
 const cookPopcorn = () => {
   return Promise
 }
+
+const main = async () => {
+
+}
+
+main().then(() => process.exit(0))
+  .catch((error) => {
+    console.log(error)
+    process.exit(1)
+  })
