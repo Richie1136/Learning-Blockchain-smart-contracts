@@ -1,4 +1,5 @@
 import { ethers } from "ethers"
+import fs from 'fs-extra'
 
 // synchronous [solidity]
 // asynchronous [javascript] - can have code running at the same time
@@ -27,6 +28,7 @@ import { ethers } from "ethers"
 // Pour Drinks
 // Start Movie
 
+
 const setupMovieNight = async () => {
   await cookPopcorn()
   await pourDrinks()
@@ -44,7 +46,15 @@ const main = async () => {
   // compile them separately
   // http://127.0.0.1:7545
   const provider = new ethers.providers.JsonRpcProvider("http://127.0.0.1:7545")
+  const wallet = new ethers.Wallet('3e9e1baa7cae37afcbb69ae5477272c6c2efdabc95aa7a1191af5d1896ec0807', provider)
+  const abi = fs.readFileSync("./SimpleStorage_sol_SimpleStorage.abi", "utf-8")
+  const binary = fs.readFileSync("./SimpleStorage_sol_SimpleStorage.bin", "utf-8")
+  // A contract factory is just an object that you can use to deploy contracts.
 
+  const contractFactory = new ethers.ContractFactory(abi, binary, wallet)
+  console.log("Deploying please wait")
+  const contract = await contractFactory.deploy() // STOP here! Wait for contract to deploy
+  console.log(contract)
 }
 
 main().then(() => process.exit(0))
