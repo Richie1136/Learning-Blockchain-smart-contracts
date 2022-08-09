@@ -54,8 +54,15 @@ const main = async () => {
   const contractFactory = new ethers.ContractFactory(abi, binary, wallet)
   console.log("Deploying please wait")
   const contract = await contractFactory.deploy() // STOP here! Wait for contract to deploy
-  const deploymentReceipt = await contract.deployTransaction.wait(1)
-  console.log(contract)
+  const transactionReceipt = await contract.deployTransaction.wait(1)
+  // You only get a transaction receipt, when you wait for a block confirmation. 
+  // Otherwise, you're gonna get the contract object, which has the deploy transaction with it
+  console.log("Here is the deployment transaction (transaction response): ")
+  console.log(contract.deployTransaction)
+  console.log("Here is the transaction Receipt: ")
+  // Receipt is what you get when you wait for a transaction and then response is 
+  // what you initially get
+  console.log(transactionReceipt)
 }
 
 main().then(() => process.exit(0))
