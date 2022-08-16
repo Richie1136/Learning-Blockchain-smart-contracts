@@ -105,8 +105,10 @@ const main = async () => {
 
   const currentFavoriteNumber = await contract.retrieve() // View function, this contract call won't cost any gas.
   console.log(`Current Favorite Number: ${currentFavoriteNumber.toString()}`)
-  const transactionResponse = await contract.store(7)
-
+  const transactionResponse = await contract.store("7")
+  const transactionReceipt = await transactionResponse.wait(1)
+  const updatedFavoriteNumber = await contract.retrieve()
+  console.log(`Updated Favorite number is ${updatedFavoriteNumber}`)
 }
 
 main()
