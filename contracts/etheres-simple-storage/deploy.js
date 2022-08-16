@@ -1,5 +1,6 @@
 import { ethers } from "ethers"
 import fs from 'fs-extra'
+import 'dotenv/config'
 
 // Deploying a contract is actually just sending a transaction
 
@@ -50,8 +51,8 @@ const main = async () => {
   // compile them in our code
   // compile them separately
   // http://127.0.0.1:7545
-  const provider = new ethers.providers.JsonRpcProvider("http://127.0.0.1:7545")
-  const wallet = new ethers.Wallet('3e9e1baa7cae37afcbb69ae5477272c6c2efdabc95aa7a1191af5d1896ec0807', provider)
+  const provider = new ethers.providers.JsonRpcProvider(process.env.RPC_URL)
+  const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider)
   const abi = fs.readFileSync("./SimpleStorage_sol_SimpleStorage.abi", "utf-8")
   const binary = fs.readFileSync("./SimpleStorage_sol_SimpleStorage.bin", "utf-8")
   // A contract factory is just an object that you can use to deploy contracts.
