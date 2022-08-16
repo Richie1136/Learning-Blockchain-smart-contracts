@@ -68,6 +68,10 @@ pragma solidity >=0.6.0 <0.9.0;
 // Polygon. Since these are EVM compatible, this means we can write solidity code,
 // and deploy to these blochains.
 
+// View and pure functions, if called outside of a contract function call don't cost
+// any gas, we are just reading off the blockchain, we're not changing any variables
+// on chain, we're not changing the state of the blockchain.
+
 contract SimpleStorage {
     // This gets initialized to 0
     // Storage variable

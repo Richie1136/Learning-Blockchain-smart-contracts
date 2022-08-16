@@ -3,6 +3,9 @@ import fs from 'fs-extra'
 
 // Deploying a contract is actually just sending a transaction
 
+// ABI or application binary interface is incredibly important for working with 
+// contracts
+
 // synchronous [solidity]
 // asynchronous [javascript] - can have code running at the same time
 
@@ -54,14 +57,14 @@ const main = async () => {
   // A contract factory is just an object that you can use to deploy contracts.
 
   const contractFactory = new ethers.ContractFactory(abi, binary, wallet)
-  console.log("Deploying please wait")
+  // console.log("Deploying please wait")
   const contract = await contractFactory.deploy() // STOP here! Wait for contract to deploy
-  const transactionReceipt = await contract.deployTransaction.wait(1)
+  await contract.deployTransaction.wait(1)
   // You only get a transaction receipt, when you wait for a block confirmation. 
   // Otherwise, you're gonna get the contract object, which has the deploy transaction with it
-  console.log("Here is the deployment transaction (transaction response): ")
+  // console.log("Here is the deployment transaction (transaction response): ")
   // console.log(contract.deployTransaction)
-  console.log("Here is the transaction Receipt: ")
+  // console.log("Here is the transaction Receipt: ")
   // Receipt is what you get when you wait for a transaction and then response is 
   // what you initially get
   // console.log(transactionReceipt)
@@ -100,13 +103,15 @@ const main = async () => {
   // The contract object is going to come with all the functionality described in 
   // our ABI, thats why you have to pass the ABI to the contract factory.
 
-  const currentFavoriteNumber = await contract.retrieve()
+  const currentFavoriteNumber = await contract.retrieve() // View function, this contract call won't cost any gas.
+  console.log(`Current Favorite Number: ${currentFavoriteNumber.toString()}`)
+  const transactionResponse = await contract.store(7)
 
+}
 
-  // }
-
-  main().then(() => process.exit(0))
-    .catch((error) => {
-      console.log(error)
-      process.exit(1)
-    })
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.log(error)
+    process.exit(1)
+  })
