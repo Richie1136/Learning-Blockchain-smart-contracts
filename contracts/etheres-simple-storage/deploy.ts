@@ -1,10 +1,10 @@
 import { ethers } from "ethers"
-import fs from 'fs-extra'
-import 'dotenv/config'
+import fs from "fs-extra"
+import "dotenv/config"
 
 // Deploying a contract is actually just sending a transaction
 
-// ABI or application binary interface is incredibly important for working with 
+// ABI or application binary interface is incredibly important for working with
 // contracts
 
 // synchronous [solidity]
@@ -20,13 +20,11 @@ import 'dotenv/config'
 // 2. Pour drinks for everyone
 // 3. Wait for popcorn to finish
 
-
 // Promise
 
 // Pending
 // Fulfilled
 // Rejected
-
 
 // Setup Move Night
 
@@ -34,14 +32,13 @@ import 'dotenv/config'
 // Pour Drinks
 // Start Movie
 
-
-const setupMovieNight = async () => {
-  await cookPopcorn()
-  await pourDrinks()
-  startMovie()
-  // deploy a contract? WAit for it to be deployed.
-  // contract.deploy => wouldn't wait for it to finish, if it wasn't a async function
-}
+// const setupMovieNight = async () => {
+//   await cookPopcorn()
+//   await pourDrinks()
+//   startMovie()
+//   // deploy a contract? WAit for it to be deployed.
+//   // contract.deploy => wouldn't wait for it to finish, if it wasn't a async function
+// }
 
 const cookPopcorn = () => {
   return Promise
@@ -51,13 +48,19 @@ const main = async () => {
   // compile them in our code
   // compile them separately
   // http://127.0.0.1:7545
-  const provider = new ethers.providers.JsonRpcProvider(process.env.RPC_URL)
-  // const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider)
-  const encryptedJson = fs.readFileSync('./encryptedKey.json', "utf-8")
-  let wallet = new ethers.Wallet.fromEncryptedJsonSync(encryptedJson, process.env.PRIVATE_KEY)
-  wallet = await wallet.connect(provider)
+  const provider = new ethers.providers.JsonRpcProvider(process.env.RPC_URL!)
+  const wallet = new ethers.Wallet(process.env.PRIVATE_KEY!, provider)
+  const encryptedJson = fs.readFileSync("./encryptedKey.json", "utf-8")
+  // let wallet = new ethers.Wallet.fromEncryptedJsonSync(
+  //   encryptedJson,
+  //   process.env.PRIVATE_KEY!
+  // )
+  // wallet = await wallet.connect(provider)
   const abi = fs.readFileSync("./SimpleStorage_sol_SimpleStorage.abi", "utf-8")
-  const binary = fs.readFileSync("./SimpleStorage_sol_SimpleStorage.bin", "utf-8")
+  const binary = fs.readFileSync(
+    "./SimpleStorage_sol_SimpleStorage.bin",
+    "utf-8"
+  )
   // A contract factory is just an object that you can use to deploy contracts.
 
   const contractFactory = new ethers.ContractFactory(abi, binary, wallet)
@@ -65,12 +68,12 @@ const main = async () => {
   const contract = await contractFactory.deploy() // STOP here! Wait for contract to deploy
   await contract.deployTransaction.wait(1)
   console.log(`Contract Address: ${contract.address}`)
-  // You only get a transaction receipt, when you wait for a block confirmation. 
+  // You only get a transaction receipt, when you wait for a block confirmation.
   // Otherwise, you're gonna get the contract object, which has the deploy transaction with it
   // console.log("Here is the deployment transaction (transaction response): ")
   // console.log(contract.deployTransaction)
   // console.log("Here is the transaction Receipt: ")
-  // Receipt is what you get when you wait for a transaction and then response is 
+  // Receipt is what you get when you wait for a transaction and then response is
   // what you initially get
   // console.log(transactionReceipt)
 
@@ -82,11 +85,11 @@ const main = async () => {
   // nonce is a number associated with a unique transaction
   // nonce when talking about blockchain mining is a value used to solve a hard problem
 
-  // Every time you change the blockchain, every time you change state, every time 
+  // Every time you change the blockchain, every time you change state, every time
   // you use gas, your sending a transaction that looks pretty much exactly like this,
-  // the data is going to be the differentiator, the data in this is saying to create a new contract, 
-  // when you make a transaction, like adding people or storing the data that we're going to be 
-  // passing in our transaction is going to be data associated with calling functions. 
+  // the data is going to be the differentiator, the data in this is saying to create a new contract,
+  // when you make a transaction, like adding people or storing the data that we're going to be
+  // passing in our transaction is going to be data associated with calling functions.
   // Ethers and hard hat are going to make this process a lot easier.
 
   //     nonce: nonce,
@@ -98,14 +101,13 @@ const main = async () => {
   //     chainId: 1337,
   //   }
 
-
   //   const sendTxResponse = await wallet.sendTransaction(tx)
   //   await sendTxResponse.wait(1)
   //   console.log(sendTxResponse)
 
   // Interacting with Contracts in Ethersjs
 
-  // The contract object is going to come with all the functionality described in 
+  // The contract object is going to come with all the functionality described in
   // our ABI, thats why you have to pass the ABI to the contract factory.
 
   const currentFavoriteNumber = await contract.retrieve() // View function, this contract call won't cost any gas.
